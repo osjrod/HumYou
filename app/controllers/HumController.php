@@ -15,8 +15,6 @@ class HumController extends \BaseController {
 
 		$text = Input::get('text');
 
-		echo($text);
-
 		$hum = new Hum;
 		$hum->text = $text;
 		$hum->user_id = $id;

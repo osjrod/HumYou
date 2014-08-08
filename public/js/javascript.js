@@ -3,7 +3,16 @@
 
 $(document).ready(function(){
 
+  
+
   $("#postear").click(function(){
+
+var RE=new RegExp(/(\S*#\[[^\]]+\])|(\S*#\S+)/gi),
+    url=$("#text").val();
+
+ console.log(url.match(RE)[0]);
+
+
     $.ajax({
           url: '/post',
           data: { text : $("#text").val()}
@@ -12,6 +21,7 @@ $(document).ready(function(){
           console.log(response);
         })
         .fail(function() {
+          alert('error');
         });
   });
 

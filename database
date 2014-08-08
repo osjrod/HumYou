@@ -1,0 +1,504 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.3.4
+-- Dumped by pg_dump version 9.3.4
+-- Started on 2014-08-08 15:25:44 CST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 186 (class 3079 OID 12350)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2606 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 185 (class 1259 OID 34518)
+-- Name: block; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE block (
+    id integer NOT NULL,
+    user_following_id integer,
+    user_follower_id integer
+);
+
+
+ALTER TABLE public.block OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 34516)
+-- Name: block_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE block_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.block_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2607 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: block_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE block_id_seq OWNED BY block.id;
+
+
+--
+-- TOC entry 183 (class 1259 OID 34510)
+-- Name: follow; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE follow (
+    id integer NOT NULL,
+    user_following_id integer,
+    user_follower_id integer
+);
+
+
+ALTER TABLE public.follow OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 34508)
+-- Name: follow_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE follow_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.follow_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2608 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: follow_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE follow_id_seq OWNED BY follow.id;
+
+
+--
+-- TOC entry 177 (class 1259 OID 34483)
+-- Name: hashtag; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE hashtag (
+    id integer NOT NULL,
+    tag character varying,
+    hum_id integer
+);
+
+
+ALTER TABLE public.hashtag OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 34481)
+-- Name: hashtag_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE hashtag_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.hashtag_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2609 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: hashtag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE hashtag_id_seq OWNED BY hashtag.id;
+
+
+--
+-- TOC entry 175 (class 1259 OID 34472)
+-- Name: hum; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE hum (
+    id integer NOT NULL,
+    text character varying,
+    privacy boolean,
+    user_id integer
+);
+
+
+ALTER TABLE public.hum OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 34470)
+-- Name: hum_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE hum_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.hum_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2610 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: hum_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE hum_id_seq OWNED BY hum.id;
+
+
+--
+-- TOC entry 179 (class 1259 OID 34494)
+-- Name: mention; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE mention (
+    id integer NOT NULL,
+    user_id integer,
+    hum_id integer
+);
+
+
+ALTER TABLE public.mention OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 34492)
+-- Name: mention_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE mention_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.mention_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2611 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: mention_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE mention_id_seq OWNED BY mention.id;
+
+
+--
+-- TOC entry 173 (class 1259 OID 34461)
+-- Name: profile; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE profile (
+    id integer NOT NULL,
+    name character varying,
+    last_name character varying,
+    biography character varying,
+    phone character varying,
+    birthday date,
+    nickname character varying,
+    avatar_path character varying
+);
+
+
+ALTER TABLE public.profile OWNER TO postgres;
+
+--
+-- TOC entry 172 (class 1259 OID 34459)
+-- Name: profile_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE profile_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.profile_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2612 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: profile_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE profile_id_seq OWNED BY profile.id;
+
+
+--
+-- TOC entry 181 (class 1259 OID 34502)
+-- Name: request; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE request (
+    id integer NOT NULL,
+    status boolean,
+    user_send integer,
+    user_receive integer
+);
+
+
+ALTER TABLE public.request OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 34500)
+-- Name: request_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE request_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.request_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2613 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: request_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE request_id_seq OWNED BY request.id;
+
+
+--
+-- TOC entry 171 (class 1259 OID 26270)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying,
+    password character varying,
+    remember_token character varying
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 170 (class 1259 OID 26268)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2614 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- TOC entry 2475 (class 2604 OID 34521)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY block ALTER COLUMN id SET DEFAULT nextval('block_id_seq'::regclass);
+
+
+--
+-- TOC entry 2474 (class 2604 OID 34513)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY follow ALTER COLUMN id SET DEFAULT nextval('follow_id_seq'::regclass);
+
+
+--
+-- TOC entry 2471 (class 2604 OID 34486)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY hashtag ALTER COLUMN id SET DEFAULT nextval('hashtag_id_seq'::regclass);
+
+
+--
+-- TOC entry 2470 (class 2604 OID 34475)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY hum ALTER COLUMN id SET DEFAULT nextval('hum_id_seq'::regclass);
+
+
+--
+-- TOC entry 2472 (class 2604 OID 34497)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY mention ALTER COLUMN id SET DEFAULT nextval('mention_id_seq'::regclass);
+
+
+--
+-- TOC entry 2469 (class 2604 OID 34464)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY profile ALTER COLUMN id SET DEFAULT nextval('profile_id_seq'::regclass);
+
+
+--
+-- TOC entry 2473 (class 2604 OID 34505)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY request ALTER COLUMN id SET DEFAULT nextval('request_id_seq'::regclass);
+
+
+--
+-- TOC entry 2468 (class 2604 OID 26273)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- TOC entry 2491 (class 2606 OID 34523)
+-- Name: block_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY block
+    ADD CONSTRAINT block_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2489 (class 2606 OID 34515)
+-- Name: follow_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY follow
+    ADD CONSTRAINT follow_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2483 (class 2606 OID 34491)
+-- Name: hashtag_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY hashtag
+    ADD CONSTRAINT hashtag_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2481 (class 2606 OID 34480)
+-- Name: hum_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY hum
+    ADD CONSTRAINT hum_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2485 (class 2606 OID 34499)
+-- Name: mention_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY mention
+    ADD CONSTRAINT mention_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2479 (class 2606 OID 34469)
+-- Name: profile_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY profile
+    ADD CONSTRAINT profile_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2487 (class 2606 OID 34507)
+-- Name: request_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY request
+    ADD CONSTRAINT request_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2477 (class 2606 OID 26278)
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2605 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2014-08-08 15:25:45 CST
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -29,7 +29,7 @@ class UserController extends BaseController
         );
 
 		if (Auth::attempt($userdata)) {
-                return Redirect::to('home');
+                return Redirect::to('hums');
         }
 
         return Redirect::to('home')->withErrors(array('invalid_credentials' => 'Acceso Denegado'));
@@ -57,7 +57,7 @@ class UserController extends BaseController
         $user->password = Hash::make($password);
         $user->save();
         Auth::attempt(array('email' => $email, 'password' => $password));
-        return Redirect::to('home');
+        return Redirect::to('hums');
     }
 
     public function isLogged()

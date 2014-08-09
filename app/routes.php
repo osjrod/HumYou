@@ -11,7 +11,6 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 Route::get('login', 'HomeController@login');
 Route::get('register', 'HomeController@register');
@@ -26,6 +25,8 @@ Route::post('register', 'UserController@register');
 Route::get('auth', 'UserController@isLogged');
 
 Route::group(array('before' => 'auth'), function () {
-	Route::get('/hums', 'HomeController@hums');
+	Route::get('/', 'HomeController@hums');
 	Route::get('/post', 'HumController@post');
+	Route::get('/createHashtag', 'HashtagController@create');
+	Route::get('/createMention', 'MentionController@create');
 });

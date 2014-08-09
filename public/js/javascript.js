@@ -7,41 +7,61 @@ $(document).ready(function(){
 
   $("#postear").click(function(){
 
-var RE=new RegExp(/(\S*#\[[^\]]+\])|(\S*#\S+)/gi),
-    url=$("#text").val();
-
- console.log(url.match(RE)[0]);
-
 
     $.ajax({
           url: '/post',
           data: { text : $("#text").val()}
         })
         .done(function(response) {
-          console.log(response);
+
+              var HA=new RegExp(/(\S*#\[[^\]]+\])|(\S*#\S+)/gi),
+              text=response.text,
+              hashtags =(text.match(HA));
+
+              var ME=new RegExp(/(\S*@\[[^\]]+\])|(\S*@\S+)/gi),
+              text=response.text,
+              mentions =(text.match(ME));
+
+            for (var i = 0; i < mentions.length; i++){
+              $.ajax({
+                    url: '/createMention',
+                    data: {  nickname: mentions[i], hum_id: response.id}
+                  })
+                  .done(function(response) {
+                    console.log(response);
+                  })
+                  .fail(function() {
+                    alert('error');
+                  });
+           }
+
+           for (var i = 0; i < hashtags.length; i++){
+              $.ajax({
+                    url: '/createHashtag',
+                    data: {  tag: hashtags[i], hum_id: response.id}
+                  })
+                  .done(function(response) {
+                    console.log(response);
+                  })
+                  .fail(function() {
+                    alert('error');
+                  });
+           }
+           console.log(response);
+
         })
         .fail(function() {
           alert('error');
         });
+
+
   });
 
 });
 
-/**
- *
- * jquery.charcounter.js version 1.2
- * requires jQuery version 1.2 or higher
- * Copyright (c) 2007 Tom Deater (http://www.tomdeater.com)
- * Licensed under the MIT License:
- * http://www.opensource.org/licenses/mit-license.php
- * 
- */
  
 (function($) {
-    /**
-   * attaches a character counter to each textarea element in the jQuery object
-   * usage: $("#myTextArea").charCounter(max, settings);
-   */
+
   
   $.fn.charCounter = function (max, settings) {
     max = max || 100;

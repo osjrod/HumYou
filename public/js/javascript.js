@@ -68,6 +68,28 @@ $(document).ready(function(){
 
   });
 
+
+$("#edit").click(function(){
+
+
+    $.ajax({
+          url: '/updateProfile',
+          data: { id : $("#id").val(), name : $("#name").val(), last_name : $("#last_name").val(), email : $("#email").val(), avatar_path : $("#avatar_path").val(), phone : $("#phone").val(), birthday : $("#birthday").val(), biography : $("#biography").html()}
+        })
+        .done(function(response) {
+             
+
+           console.log(response);
+         
+
+        })
+        .fail(function() {
+          alert('error');
+        });
+
+
+  });
+
 });
 
  
@@ -79,7 +101,7 @@ $(document).ready(function(){
     settings = $.extend({
       container: "<span></span>",
       classname: "charcounter",
-      format: "%1 characters remaining",
+      format: "(%1 characters remaining)",
       pulse: true,
       delay: 0
     }, settings);

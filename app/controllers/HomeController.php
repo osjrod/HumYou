@@ -24,6 +24,20 @@ class HomeController extends BaseController {
 
     public function hums()
     {
-        $this->layout->nest('content', 'hums', array('email' => Auth::user()->email)); 
+        $id = Auth::id();
+        
+        $profiles = Profile::all();
+
+        $userProfile = "";
+
+        foreach ($profiles as $profile) {
+            if ($profile->user_id == $id){
+                $userProfile = $profile;
+            }
+        }
+
+        $hums = Hum::get_hums($id);
+
+        $this->layout->nest('content', 'hums', array('email' => Auth::user()->email, 'profile' => $userProfile, 'hums' => $hums)); 
     }
 }

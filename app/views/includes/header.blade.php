@@ -14,10 +14,10 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Amigos <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search Friends <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Siguiendo</a></li>
-            <li><a href="#">Bloqueados</a></li>
+            <li><a href="#">Friends</a></li>
+            <li><a href="#">Blocks</a></li>
           </ul>
         </li>
       </ul>
@@ -25,7 +25,7 @@
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-default">Find</button>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

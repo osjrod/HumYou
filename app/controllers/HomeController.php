@@ -24,6 +24,6 @@ class HomeController extends BaseController {
 
     public function hums()
     {
-        $this->layout->nest('content', 'hums');
+        $this->layout->nest('content', 'hums', array('email' => Auth::user()->email)); 
     }
 }

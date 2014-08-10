@@ -11,8 +11,8 @@ class MentionController extends \BaseController {
 
 		foreach ($profiles as $profile) {
 			$mention = new Mention;
-			if ($profile.nickname == $nickname){
-				$mention->user_id = $profile.user_id;
+			if ($profile->nickname == $nickname){
+				$mention->user_id = $profile->user_id;
 				$mention->hum_id = $hum_id;
 				$mention->save();
 			}

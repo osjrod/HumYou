@@ -22,6 +22,8 @@ $(document).ready(function(){
               text=response.text,
               mentions =(text.match(ME));
 
+              try{
+
             for (var i = 0; i < mentions.length; i++){
               $.ajax({
                     url: '/createMention',
@@ -35,6 +37,11 @@ $(document).ready(function(){
                   });
            }
 
+         }
+         catch(e){}
+
+
+         try{
            for (var i = 0; i < hashtags.length; i++){
               $.ajax({
                     url: '/createHashtag',
@@ -47,7 +54,11 @@ $(document).ready(function(){
                     alert('error');
                   });
            }
+         }
+         catch(x){}
+
            console.log(response);
+         
 
         })
         .fail(function() {

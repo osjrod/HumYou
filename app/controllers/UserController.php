@@ -29,10 +29,10 @@ class UserController extends BaseController
         );
 
 		if (Auth::attempt($userdata)) {
-                return Redirect::to('hums');
+                return Redirect::to('/');
         }
 
-        return Redirect::to('home')->withErrors(array('invalid_credentials' => 'Acceso Denegado'));
+        return Redirect::to('login')->withErrors(array('invalid_credentials' => 'Acceso Denegado'));
     }
 
     public function register()
@@ -56,20 +56,28 @@ class UserController extends BaseController
         $user->email = $email;
         $user->password = Hash::make($password);
         $user->save();
+
+        $nickname = explode("@",$email);
+
+        $profile = new Profile;
+        $profile->nickname = "@$nickname[0]";
+        $profile->user_id = $user->id;
+        $profile->save();
+
         Auth::attempt(array('email' => $email, 'password' => $password));
-        return Redirect::to('hums');
+        return Redirect::to('/');
     }
 
     public function isLogged()
     {
         if (Auth::guest()) {
-            return Redirect::to('home');
+            return Redirect::to('/');
         }
     }
 
     public function logout()
     {
         Auth::logout();
-        return Redirect::to('home');
+        return Redirect::to('/');
     }
 }

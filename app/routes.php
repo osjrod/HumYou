@@ -29,4 +29,5 @@ Route::group(array('before' => 'auth'), function () {
 	Route::get('/post', 'HumController@post');
 	Route::get('/createHashtag', 'HashtagController@create');
 	Route::get('/createMention', 'MentionController@create');
+	Route::get('/editProfile', 'ProfileController@edit');
 });

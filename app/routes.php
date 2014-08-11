@@ -25,10 +25,11 @@ Route::post('register', 'UserController@register');
 Route::get('auth', 'UserController@isLogged');
 
 Route::group(array('before' => 'auth'), function () {
-	Route::get('/', 'HomeController@hums');
+	Route::get('/', 'HumController@humsTimeline');
 	Route::get('/post', 'HumController@post');
 	Route::get('/createHashtag', 'HashtagController@create');
 	Route::get('/createMention', 'MentionController@create');
 	Route::get('/editProfile', 'ProfileController@edit');
 	Route::get('/updateProfile', 'ProfileController@update');
+	Route::get('/search_tag', 'HumController@humsSearch');
 });

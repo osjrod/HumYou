@@ -6,4 +6,15 @@ class Hashtag extends Eloquent
     protected $fillable   = array('tag','hum_id');
     protected $guarded    = array('id');
     public    $timestamps = false;
+
+
+    public static function get_hums($tag)
+    {
+		return DB::select("SELECT h.*, p.name, p.last_name, p.nickname 
+							FROM hum h 
+							INNER JOIN profile p
+							ON h.user_id = p.user_id
+						   	WHERE  h.id IN (select hs.hum_id from hashtag hs where hs.tag = '$tag');");
+    }
+
 }

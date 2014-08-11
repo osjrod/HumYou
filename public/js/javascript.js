@@ -58,6 +58,7 @@ $(document).ready(function(){
          catch(x){}
 
            console.log(response);
+           window.location.href = "/";
          
 
         })
@@ -89,6 +90,7 @@ $("#edit").click(function(){
 
 
   });
+
 
 });
 

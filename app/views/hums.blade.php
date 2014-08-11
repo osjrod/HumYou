@@ -38,7 +38,7 @@
                     </div>
                 <div class="panel-body">
                     <?php
-                        foreach ($hums as $row) {
+                        foreach (array_reverse($hums) as $row) {
                             echo "<div class='well'>";
                             echo "<div class='panel-heading'>";
                             echo "<label>$row->name $row->last_name</label>"; 

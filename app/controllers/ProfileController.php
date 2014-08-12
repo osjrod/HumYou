@@ -49,6 +49,18 @@ class ProfileController extends \BaseController {
 		return Response::json($profile);
 	}
 
+	public function listPeople()
+	{
+		$id = Auth::id();
+
+		$people = Profile::listPeople($id);
+		$requests = Requestt::myRequestsSend($id); 
+
+        $this->layout->nest('content', 'people.list', array('email' => Auth::user()->email,'people' => $people,'requests' => $requests)); 
+		
+	}
+
+
 	
 
 }

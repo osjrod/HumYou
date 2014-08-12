@@ -32,4 +32,9 @@ Route::group(array('before' => 'auth'), function () {
 	Route::get('/editProfile', 'ProfileController@edit');
 	Route::get('/updateProfile', 'ProfileController@update');
 	Route::get('/search_tag', 'HumController@humsSearch');
+	Route::get('/people', 'ProfileController@listPeople');
+	Route::get('/sendRequest', 'RequestController@create');
+	Route::get('/follow', 'FollowController@create');
+	Route::get('/deleteRequest', 'RequestController@delete');
+
 });

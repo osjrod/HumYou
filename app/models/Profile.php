@@ -15,4 +15,15 @@ class Profile extends Eloquent
 		where 
 		user_id = $id");
     }
+
+    public static function listPeople($id)
+    {
+		return DB::select("select p.*, u.* 
+		from profile p
+		inner join users u
+		on p.user_id = u.id
+		where u.id <> $id
+		and u.id not in 
+		(select f.user_following_id from follow f where f.user_follower_id = $id);");
+    }
 }

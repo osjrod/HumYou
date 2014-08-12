@@ -92,7 +92,74 @@ $("#edit").click(function(){
   });
 
 
-});
+$(".seguir").click(function(){
+    
+    var este = $(this);
+    
+    $.ajax({
+          url: '/sendRequest',
+          data: { id : $(this).prev().val()}
+        })
+        .done(function(response) {
+             
+          este.val('Request Sent');
+          este.attr('disabled','true');
+
+           console.log(response);
+         
+        })
+        .fail(function() {
+          alert('error');
+        });
+
+
+  });
+
+
+$(".accept").click(function(){
+    
+    var este = $(this);
+    
+    $.ajax({
+          url: '/follow',
+          data: { following : $(this).prev().val(), follower : $(this).prev().prev().val(),request_id : $(this).prev().prev().prev().val()}
+        })
+        .done(function(response) {
+            
+           window.location.href = "/";  
+           console.log(response);
+         
+        })
+        .fail(function() {
+          alert('error');
+        });
+
+
+  });
+
+  
+
+  $(".reject").click(function(){
+    
+    var este = $(this);
+    
+    $.ajax({
+          url: '/deleteRequest',
+          data: { id : $(this).prev().prev().prev().prev().val()}
+        })
+        .done(function(response) {
+            
+           window.location.href = "/";
+           console.log(response);
+         
+        })
+        .fail(function() {
+          alert('error');
+        });
+  });
+
+
+  });
 
  
 (function($) {

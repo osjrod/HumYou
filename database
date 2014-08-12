@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.4
 -- Dumped by pg_dump version 9.3.4
--- Started on 2014-08-08 15:25:44 CST
+-- Started on 2014-08-12 06:00:24 CST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -240,7 +240,8 @@ CREATE TABLE profile (
     phone character varying,
     birthday date,
     nickname character varying,
-    avatar_path character varying
+    avatar_path character varying,
+    user_id integer
 );
 
 
@@ -496,7 +497,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2014-08-08 15:25:45 CST
+-- Completed on 2014-08-12 06:00:24 CST
 
 --
 -- PostgreSQL database dump complete

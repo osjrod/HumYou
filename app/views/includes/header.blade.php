@@ -14,10 +14,10 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search Friends <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">People <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Friends</a></li>
-            <li><a href="#">Blocks</a></li>
+            <li><a href="/following">Following</a></li>
+            <li><a href="/people">To Follow</a></li>
           </ul>
         </li>
       </ul>

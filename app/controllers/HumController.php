@@ -40,7 +40,9 @@ class HumController extends \BaseController {
 
         $hums = Hum::get_hums($id);
 
-        $this->layout->nest('content', 'hums', array('email' => Auth::user()->email, 'profile' => $userProfile, 'hums' => $hums)); 
+        $requests = Requestt::myRequestsReceive($id);
+
+        $this->layout->nest('content', 'hums', array('email' => Auth::user()->email, 'profile' => $userProfile, 'hums' => $hums, 'requests' => $requests)); 
     }
 
 

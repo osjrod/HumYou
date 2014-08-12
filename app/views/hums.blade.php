@@ -26,8 +26,29 @@
                         <button class="btn btn-info" id="postear" >Post</button>
 
                 </div>
+                <hr>
+                <div class="panel-body">
+                <?php
 
-                <div class="panel-footer"></div>
+                if($requests){
+                    echo "<h3>Follow Requests<h3>";
+                }
+                    
+                        foreach ($requests as $request) {
+                         echo "<div class='well'>";
+                            echo "<h6>$request->name</h6>";
+                            echo "<h6>$request->nickname</h6>";
+                            echo "<input type='hidden' value=$request->request_id>";
+                            echo "<input type='hidden' value=$request->user_send>";
+                            echo "<input type='hidden' value=$request->user_receive>";
+                            echo "<input type='button' class='btn btn-info pull-right accept' value='Accept'>";
+                            echo "<input type='button' class='btn btn-info pull-right reject' value='Reject'>";
+                         echo "</div>";
+
+
+                        }
+                    ?>
+                </div>
             
         </div>
         </div>
@@ -57,3 +78,4 @@
         </div>
     </div>
 </div>
+{{HTML::style('css/humyou.css');}}

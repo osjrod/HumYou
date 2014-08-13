@@ -20,7 +20,17 @@ class ProfileController extends \BaseController {
 				$userProfile = $profile;
 			}
 		}
-		$this->layout->nest('content', 'profile.profile', array('email' => Auth::user()->email,'profile'=>$userProfile)); 
+		$this->layout->nest('content', 'profile.edit', array('email' => Auth::user()->email,'profile'=>$userProfile)); 
+	}
+
+	public function show()
+	{
+		$id = Input::get('id');
+		$email = Auth::user()->email;
+
+		$profile = Profile::getProfile($id);
+
+		$this->layout->nest('content', 'profile.profile', array('email' => Auth::user()->email,'profile'=>$profile)); 
 	}
 
 	public function update()
@@ -30,7 +40,6 @@ class ProfileController extends \BaseController {
 		$name = Input::get('name');
 		$last_name = Input::get('last_name');
 		$email = Input::get('email');
-		$avatar_path = Input::get('avatar_path');
 		$phone = Input::get('phone');
 		$birthday = Input::get('birthday');
 		$biography = Input::get('biography');
@@ -39,7 +48,6 @@ class ProfileController extends \BaseController {
 
 		$profile->name = $name;
 		$profile->last_name = $last_name;
-		$profile->avatar_path = $avatar_path;
 		$profile->phone = $phone;
 		$profile->birthday = $birthday;
 		$profile->biography = $biography;
@@ -59,6 +67,31 @@ class ProfileController extends \BaseController {
         $this->layout->nest('content', 'people.list', array('email' => Auth::user()->email,'people' => $people,'requests' => $requests)); 
 		
 	}
+
+	public function uploadPicture()
+	 {
+	   $id  = Input::get('id');
+	   $picture  = Input::file('picture');
+
+	   $filename = $picture->getClientOriginalName();
+	   $path     = "public/Pictures/$id/";
+	   
+	  $file_parts = pathinfo($filename);//getting file
+	  $extension  = $file_parts['extension'];//getting extension
+	     if ( ! preg_match("/jpeg|jpg|png/i", $extension)) {
+	      return Response::json('extension');
+	  }
+	   $insert = Profile::updatePicture($id,"Pictures/$id/$filename");
+	   $uploadSuccess = $picture->move($path, $filename);
+	   if($uploadSuccess)
+	  {
+	   return Response::json($insert);
+	  }
+	  else
+	  {
+	   return Response::json("");
+	  }
+ 	}
 
 
 	

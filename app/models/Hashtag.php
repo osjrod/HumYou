@@ -10,7 +10,7 @@ class Hashtag extends Eloquent
 
     public static function get_hums($tag)
     {
-		return DB::select("SELECT h.*, p.name, p.last_name, p.nickname 
+		return DB::select("SELECT h.*, p.name, p.last_name, p.nickname, p.avatar_path
 							FROM hum h 
 							INNER JOIN profile p
 							ON h.user_id = p.user_id

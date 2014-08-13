@@ -158,6 +158,106 @@ $(".accept").click(function(){
         });
   });
 
+$(".dejar").click(function(){
+    
+    var este = $(this);
+    
+    $.ajax({
+          url: '/deleteFollow',
+          data: { id : $(this).prev().val()}
+        })
+        .done(function(response) {
+            
+           window.location.href = "/follows";
+           console.log(response);
+         
+        })
+        .fail(function() {
+          alert('error');
+        });
+  });
+
+
+$("#change").click(function(){
+
+
+    $.ajax({
+          url: '/changePassword',
+          data: { password : $("#password").val(), password_confirmation : $("#password_confirmation").val()}
+        })
+        .done(function(response) {
+             
+
+           console.log(response);
+         
+
+        })
+        .fail(function() {
+          alert('error');
+        });
+
+
+  });
+
+  $("#change").click(function(){
+
+
+    $.ajax({
+          url: '/changePassword',
+          data: { password : $("#password").val(), password_confirmation : $("#password_confirmation").val()}
+        })
+        .done(function(response) {
+             
+
+           console.log(response);
+         
+
+        })
+        .fail(function() {
+          alert('error');
+        });
+
+
+  });
+
+
+$("#upload").click(function(){ 
+    var picture   = $('#avatar_path').get(0).files[0];
+    var id   = $('#id').val();
+
+   // alert(picture);
+            
+    var formData  = new FormData();
+    formData.append('picture',picture);
+    formData.append('id',id);
+      $.ajax({
+          url: '/uploadPicture',
+          type: 'POST',
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
+      }).done(function (data) {
+        //alert(data);
+        if(data === 'extension'){
+          $('#alert').text('Invalid extension');
+          $('#alert').css('display', 'block');
+        }
+        else{
+          $('#image').attr('src',data);
+        }
+        
+         //alert(data); 
+        
+      }).fail(function(data,data2){
+          alert("fail");
+          console.log(data);
+          console.log(data2);
+      
+      });
+
+});
+
 
   });
 

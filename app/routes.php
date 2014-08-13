@@ -36,5 +36,11 @@ Route::group(array('before' => 'auth'), function () {
 	Route::get('/sendRequest', 'RequestController@create');
 	Route::get('/follow', 'FollowController@create');
 	Route::get('/deleteRequest', 'RequestController@delete');
+	Route::get('/follows', 'FollowController@listFollows');
+	Route::get('/deleteFollow', 'FollowController@delete');
+	Route::get('/changePassword', 'UserController@changePassword');
+	Route::post('/uploadPicture', 'ProfileController@uploadPicture');
+	Route::get('/profile', 'ProfileController@show');
+
 
 });

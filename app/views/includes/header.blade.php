@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -16,7 +16,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">People <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/following">Following</a></li>
+            <li><a href="/follows">Following</a></li>
             <li><a href="/people">To Follow</a></li>
           </ul>
         </li>

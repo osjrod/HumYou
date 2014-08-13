@@ -10,3 +10,35 @@
 .reject{
 	margin-right: 2%;
 }
+
+body{
+	background-image: url('https://abs.twimg.com/images/themes/theme1/bg.png');
+	background-position: left 40px;
+	background-attachment: fixed;
+	background-repeat: repeat;
+	background-repeat: no-repeat;
+	background-color: #C0DEED;
+}
+
+.container{
+	margin-top: 70px;
+}
+
+
+#imagenPerfil{
+border-radius: 8px; /* Borde redondeado */
+box-shadow: 0px 0px 6px #000; /* Sombra */
+padding:15px; /* Espacio entre la imagen y el borde */
+background:#FFF; /* Color de fondo que se ve entre el espacio */
+-moz-transition: all 1s;
+-webkit-transition: all 1s;
+-o-transition: all 1s;
+}
+
+#imagenPerfil:hover{
+border-radius:20px; /* Con esto quitamos el borde redondeado */
+-moz-transition: all 1s;
+-webkit-transition: all 1s;
+-o-transition: all 1s;
+cursor:pointer;
+}

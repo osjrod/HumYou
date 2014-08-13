@@ -21,5 +21,26 @@ class FollowController extends \BaseController {
 		return Response::json($follow);
 	}
 
+	public function listFollows()
+	{
+		$id = Auth::id();
+
+		$follow = Follow::myFollows($id); 
+
+        $this->layout->nest('content', 'people.friends', array('email' => Auth::user()->email,'follow' => $follow)); 
+		
+	}
+
+	public function delete()
+	{
+		$id = Input::get('id');
+
+		$follow = Follow::findOrFail($id);
+		$follow->delete();
+
+		return Response::json($id);
+	}
+
+
 
 }

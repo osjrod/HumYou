@@ -8,7 +8,7 @@ class Profile extends Eloquent
     public    $timestamps = false;
 
 
-    public static function actualProfile($id)
+    public static function getProfile($id)
     {
 		return DB::select("select * 
 		from profile
@@ -25,5 +25,13 @@ class Profile extends Eloquent
 		where u.id <> $id
 		and u.id not in 
 		(select f.user_following_id from follow f where f.user_follower_id = $id);");
+    }
+
+    public static function updatePicture($id,$picture)
+    {
+        $profile = Profile::findOrFail($id);
+        $profile->avatar_path  = $picture;
+        $profile->save();
+        return $picture;
     }
 }

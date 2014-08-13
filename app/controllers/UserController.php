@@ -80,4 +80,26 @@ class UserController extends BaseController
         Auth::logout();
         return Redirect::to('/');
     }
+
+    public function changePassword()
+    {
+        $rules = $this->validationRules();
+        $rules['password'] = 'required|alphaNum|min:3|Confirmed';
+        $rules['password_confirmation'] = 'required|alphaNum|min:3';
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('editProfile')
+                ->withErrors($validator) // send back all errors to the login form
+                ->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
+        }
+
+        $password = Input::get('password');
+        $user = User::findOrFail(Auth::id());
+        $user->password = Hash::make($password);
+        $user->save();
+
+        return Response::json($user);
+    }
 }

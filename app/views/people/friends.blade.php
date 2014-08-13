@@ -27,9 +27,12 @@
 	                            echo "<p>$row->nickname</p>"; 
 	                            echo "<input type='hidden' value=$row->follow_id>";
 	                       echo "</div>";
-								  echo "<input type='button' class='btn btn-info pull-right dejar' value='Stop Following'>"; 
-                             	 echo "<input type='button' class='btn btn-info pull-right perfil' value='View Profile'>";
-                             	echo "</div>";
+								  echo "<input type='button' class='btn btn-info pull-right dejar' value='Stop Following'>";
+                                  echo "<form action='profile' method='post'>";
+                                  echo "<input type='hidden' name='user_id' value=$row->user_following_id>";
+                             	 echo "<input type='submit' class='btn btn-info pull-right perfil' value='View Profile'>";
+                                 echo "</form>";
+                                echo "</div>";
                                 echo "</div>";
                             if ($counter%2 == 1){
                         		echo "</div>";

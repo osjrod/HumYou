@@ -44,7 +44,10 @@
 								  {
 								  echo "<input type='button' class='btn btn-info pull-right seguir' value='Follow'>"; 
 								  }
-                             	 echo "<input type='button' class='btn btn-info pull-right perfil' value='View Profile'>";
+								   echo "<form action='profile' method='post'>";
+                                  echo "<input type='hidden' name='user_id' value=$row->user_id>";
+                             	 echo "<input type='submit' class='btn btn-info pull-right perfil' value='View Profile'>";
+                             	 echo "</form>";
                              	echo "</div>";
                              	echo "</div>";
                             if ($counter%2 == 1){

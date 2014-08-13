@@ -98,7 +98,7 @@ $(".seguir").click(function(){
     
     $.ajax({
           url: '/sendRequest',
-          data: { id : $(this).prev().val()}
+          data: { id : $(this).prev().children().last().val()}
         })
         .done(function(response) {
              
@@ -164,7 +164,7 @@ $(".dejar").click(function(){
     
     $.ajax({
           url: '/deleteFollow',
-          data: { id : $(this).prev().val()}
+          data: { id : $(this).prev().children().last().val()}
         })
         .done(function(response) {
             
@@ -179,27 +179,6 @@ $(".dejar").click(function(){
 
 
 $("#change").click(function(){
-
-
-    $.ajax({
-          url: '/changePassword',
-          data: { password : $("#password").val(), password_confirmation : $("#password_confirmation").val()}
-        })
-        .done(function(response) {
-             
-
-           console.log(response);
-         
-
-        })
-        .fail(function() {
-          alert('error');
-        });
-
-
-  });
-
-  $("#change").click(function(){
 
 
     $.ajax({

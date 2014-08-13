@@ -8,7 +8,10 @@
 
                             <div class="text-center">
                                     <div class="span2" >
-                                        <img src={{{$profile->avatar_path}}} id="imagenPerfil" height="150" width="150" >
+                                    <form name="viewProfile" method='post' action="/profile">
+                                        <input type='hidden' name="user_id" id="user_id" value={{{$profile->user_id}}}>
+                                       <a href="javascript:document.viewProfile.submit();"> <img src={{{$profile->avatar_path}}} id="imagenPerfil" height="150" width="150" > </a> 
+                                    </form>
                                     </div>
                             </div>
                                     <div class="span8">
@@ -35,7 +38,11 @@
                          echo "<div class='well'>";
                          echo "<div class='row'>";
                             echo "<div class='col-md-4'>";
+                            echo"<form id='viewProfileRequest$request->user_send' method='post' action='/profile'>
+                                        <input type='hidden' name='user_id' id='user_id' value=$request->user_send>
+                                       <a href='javascript:;' onclick='document.getElementById(\"viewProfileRequest$request->user_send\").submit();'> ";
                             echo "<img src=$request->avatar_path height='75' width='75' >";
+                            echo"</a></form>";
                             echo "</div>";
                             echo "<div class='col-md-6'>";
                             echo "<h6>$request->name $request->last_name</h6>";
@@ -69,7 +76,11 @@
                             echo "<div class='panel-heading'>";
                             echo "<div class='row'>";
                             echo "<div class='col-md-2'>";
+                            echo"<form id='viewProfile$row->user_id' method='post' action='/profile'>
+                                        <input type='hidden' name='user_id' id='user_id' value=$row->user_id>
+                                       <a href='javascript:;' onclick='document.getElementById(\"viewProfile$row->user_id\").submit();'> ";
                             echo "<img src=$row->avatar_path height='75' width='75' >";
+                            echo"</a></form>";
                             echo "</div>";
                             echo "<div class='col-md-10'>";
                             echo "<label>$row->name $row->last_name</label>"; 

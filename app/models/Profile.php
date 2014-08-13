@@ -10,10 +10,12 @@ class Profile extends Eloquent
 
     public static function getProfile($id)
     {
-		return DB::select("select * 
-		from profile
+		return DB::select("select p.*, u.email 
+		from profile p
+		inner join users u
+		on p.user_id = u.id
 		where 
-		user_id = $id");
+		p.user_id = $id");
     }
 
     public static function listPeople($id)

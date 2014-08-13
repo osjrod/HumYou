@@ -25,12 +25,12 @@ class ProfileController extends \BaseController {
 
 	public function show()
 	{
-		$id = Input::get('id');
+		$id = Input::get('user_id');
 		$email = Auth::user()->email;
 
 		$profile = Profile::getProfile($id);
 
-		$this->layout->nest('content', 'profile.profile', array('email' => Auth::user()->email,'profile'=>$profile)); 
+		$this->layout->nest('content', 'profile.profile', array('email' => Auth::user()->email, 'profile'=>$profile)); 
 	}
 
 	public function update()

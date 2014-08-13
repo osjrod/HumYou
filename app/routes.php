@@ -41,6 +41,8 @@ Route::group(array('before' => 'auth'), function () {
 	Route::get('/changePassword', 'UserController@changePassword');
 	Route::post('/uploadPicture', 'ProfileController@uploadPicture');
 	Route::post('/profile', 'ProfileController@show');
+	Route::get('/blockUser', 'BlockController@create');
+	Route::get('/unblockUser', 'BlockController@delete');
 
 
 });

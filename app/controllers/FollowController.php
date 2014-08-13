@@ -26,8 +26,9 @@ class FollowController extends \BaseController {
 		$id = Auth::id();
 
 		$follow = Follow::myFollows($id); 
+		$blocks = Block::myBlocks($id);
 
-        $this->layout->nest('content', 'people.friends', array('email' => Auth::user()->email,'follow' => $follow)); 
+        $this->layout->nest('content', 'people.friends', array('email' => Auth::user()->email,'follow' => $follow,'blocks' => $blocks)); 
 		
 	}
 

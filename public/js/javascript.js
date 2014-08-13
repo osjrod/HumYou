@@ -75,7 +75,7 @@ $("#edit").click(function(){
 
     $.ajax({
           url: '/updateProfile',
-          data: { id : $("#id").val(), name : $("#name").val(), last_name : $("#last_name").val(), email : $("#email").val(), avatar_path : $("#avatar_path").val(), phone : $("#phone").val(), birthday : $("#birthday").val(), biography : $("#biography").html()}
+          data: { id : $("#id").val(), name : $("#name").val(), last_name : $("#last_name").val(), email : $("#email").val(), avatar_path : $("#avatar_path").val(), phone : $("#phone").val(), birthday : $("#birthday").val(), biography : $("#biography").val()}
         })
         .done(function(response) {
              
@@ -114,6 +114,15 @@ $(".seguir").click(function(){
 
 
   });
+
+
+  $(".bloquear").bind("click",block);
+
+  $(".desbloquear").bind("click",unblock);
+
+
+
+
 
 
 $(".accept").click(function(){
@@ -239,6 +248,67 @@ $("#upload").click(function(){
 
 
   });
+
+var unblock = function desbloquear(){
+    
+    var este = $(this);
+
+    
+    $.ajax({
+          url: '/unblockUser',
+          data: { id : $(this).parent().next().children().last().val()}
+        })
+        .done(function(response) {
+             
+          este.val('Block');
+
+          este.unbind("click");
+
+          este.bind("click",block);
+
+          este.removeClass("desbloquear");
+          este.addClass("bloquear");
+
+
+           console.log(response);
+         
+        })
+        .fail(function() {
+          alert('error');
+        });
+
+
+  };
+
+
+  var block = function bloquear(){
+    
+    var este = $(this);
+    
+    $.ajax({
+          url: '/blockUser',
+          data: { id : $(this).parent().next().children().last().val()}
+        })
+        .done(function(response) {
+             
+          este.val('Unblock');         
+
+          este.unbind("click");
+
+          este.bind("click",unblock);
+
+          este.removeClass("bloquear");
+          este.addClass("desbloquear");
+
+           console.log(response);
+         
+        })
+        .fail(function() {
+          alert('error');
+        });
+
+
+  };
 
  
 (function($) {

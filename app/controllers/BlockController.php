@@ -2,84 +2,28 @@
 
 class BlockController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
+	public function create(){
+
+		$user_follower_id = Auth::id();
+		$user_following_id = Input::get('id');
+
+		$block = new Block;
+
+		$block->user_follower_id = $user_follower_id;
+		$block->user_following_id = $user_following_id;
+		$block->save();
+	
+		return Response::json($block);
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
+	public function delete()
 	{
-		//
-	}
+		$follower = Auth::id();
+		$following = Input::get('id');
 
+		$block = Block::deleteBlock($follower, $following);
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+		return Response::json($following);
 	}
 
 

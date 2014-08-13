@@ -26,7 +26,9 @@ class Profile extends Eloquent
 		on p.user_id = u.id
 		where u.id <> $id
 		and u.id not in 
-		(select f.user_following_id from follow f where f.user_follower_id = $id);");
+		(select f.user_following_id from follow f where f.user_follower_id = $id)
+		and u.id not in 
+		(select b.user_follower_id from block b where b.user_following_id = $id);");
     }
 
     public static function updatePicture($id,$picture)

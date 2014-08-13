@@ -63,8 +63,9 @@ class ProfileController extends \BaseController {
 
 		$people = Profile::listPeople($id);
 		$requests = Requestt::myRequestsSend($id); 
+		$blocks = Block::myBlocks($id);
 
-        $this->layout->nest('content', 'people.list', array('email' => Auth::user()->email,'people' => $people,'requests' => $requests)); 
+        $this->layout->nest('content', 'people.list', array('email' => Auth::user()->email,'people' => $people,'requests' => $requests,'blocks' => $blocks)); 
 		
 	}
 

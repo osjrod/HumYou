@@ -32,6 +32,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo($email); ?><span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/editProfile">Edit Profile</a></li>
+            <li><a href="/deleteAccount">Change Password</a></li>
             <li><a href="/deleteAccount">Delete Account</a></li>
             <li class="divider"></li>
             <li><a href="/logout">Logout</a></li>

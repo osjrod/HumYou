@@ -4,11 +4,21 @@
 }
 
 .perfil{
-	margin-right: 2%;
+	margin-right: 1%;
 }
 
 .reject{
-	margin-right: 2%;
+	margin-right: 1%;
+}
+
+.bloquear{
+	margin-right: 1%;
+	margin-top: 10px;
+}
+
+.desbloquear{
+	margin-right: 1%;
+	margin-top: 10px;
 }
 
 body{

@@ -14,9 +14,11 @@ class Hum extends Eloquent
 							FROM hum h 
 							INNER JOIN profile p
 							ON h.user_id = p.user_id
-						   	WHERE h.user_id = $id 
+						   	WHERE (h.user_id = $id 
 						   	OR h.user_id IN (select f.user_following_id from follow f where f.user_follower_id = $id) 
-						   	OR h.id IN (select m.hum_id from mention m where m.user_id = $id);");
+						   	OR h.id IN (select m.hum_id from mention m where m.user_id = $id))
+						   	and h.user_id not in 
+							(select b.user_follower_id from block b where b.user_following_id = $id);");
     }
 
 

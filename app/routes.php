@@ -25,7 +25,7 @@ Route::post('register', 'UserController@register');
 Route::get('auth', 'UserController@isLogged');
 
 Route::group(array('before' => 'auth'), function () {
-	Route::get('/', 'HumController@humsTimeline');
+	Route::get('/', array('as' => 'inicio', 'uses' => 'HumController@humsTimeline'));
 	Route::get('/post', 'HumController@post');
 	Route::get('/createHashtag', 'HashtagController@create');
 	Route::get('/createMention', 'MentionController@create');

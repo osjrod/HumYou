@@ -26,13 +26,30 @@ class PasswordController extends BaseController {
 	{
 	  $credentials = array('email' => Input::get('email'),'password' => Input::get('password'),'password_confirmation' => Input::get('password_confirmation'),'token' => Input::get('token'));
 	 
-	  return Password::reset($credentials, function($user, $password)
+		Password::validator(function($credentials)
+		{
+		    return strlen($credentials['password']) >= 3;
+		});
+
+	  $resultado = Password::reset($credentials, function($user, $password)
 	  {
 	    $user->password = Hash::make($password);
 	 
 	    $user->save();
-	 
-	    return Redirect::to('login')->with('flash', 'Your password has been reset');
+	    
 	  });
+
+	  if ($resultado == 'reminders.reset'){
+	    	return "Now you can login.";
+	    }
+	    else if ($resultado == 'reminders.password'){
+	    	return "Password is too short or does not match.";
+	    }
+	    else if ($resultado == 'reminders.token'){
+	    	return "This link has already expired.";
+	    }
+	 	else{
+	    	return "You can't change your password.";
+	    }
 	}
 }

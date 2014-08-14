@@ -81,6 +81,16 @@ class UserController extends BaseController
         return Redirect::to('/');
     }
 
+    public function deleteAccount()
+    {
+        $id = Auth::id();
+        User::deleteAccount($id);
+        Auth::logout();
+
+        return Redirect::to('/');
+    }
+
+
     public function changePassword()
     {
         $rules = $this->validationRules();

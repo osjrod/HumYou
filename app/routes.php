@@ -43,6 +43,7 @@ Route::group(array('before' => 'auth'), function () {
 	Route::post('/profile', 'ProfileController@show');
 	Route::get('/blockUser', 'BlockController@create');
 	Route::get('/unblockUser', 'BlockController@delete');
+	Route::get('/deleteAccount', 'UserController@deleteAccount');
 
 
 });

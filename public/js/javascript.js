@@ -81,6 +81,7 @@ $("#edit").click(function(){
              
 
            console.log(response);
+           window.location.href = "/";
          
 
         })

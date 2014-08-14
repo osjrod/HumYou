@@ -10,10 +10,11 @@ class PasswordController extends BaseController {
 	{
 	  $credentials = array('email' => Input::get('email'));
 	 
-	  return Password::remind($credentials,function($message, $user)
+	  Password::remind($credentials,function($message, $user)
 		{
 		$message->subject('Password Reset');
 		});
+	  return Redirect::to('/');
 	}
 
 	public function reset($token)

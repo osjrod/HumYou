@@ -94,7 +94,35 @@ class ProfileController extends \BaseController {
 	  }
  	}
 
+ 	  public $validationChangePassword = array(
+            'password'          => 'required|alphaNum|min:3|Confirmed', 
+            'password_confirmation'   => 'required|alphaNum|min:3'
+        );
 
+ 	public function changePassword(){
+
+        $this->layout->nest('content', 'profile.changePassword', array('email' => Auth::user()->email));   
+    }
+
+    public function passwordUpdate(){
+
+        $validator  = Validator::make(Input::all(), $this->validationChangePassword);
+        if ($validator->fails()) {
+            return Redirect::to('/changePassword')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $password = Input::get('password');
+            $id       = Auth::user()->id;
+            
+            $user = User::findOrFail($id);
+
+            $user->password  = Hash::make($password);
+            $user->save();
+
+            return Redirect::to('/');
+        }
+    }
 	
 
 }

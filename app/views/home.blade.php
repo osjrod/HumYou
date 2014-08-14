@@ -39,7 +39,7 @@
 					@endif
                 </div>
                 <div class="panel-footer">
-                    <a href="http://www.jquery2dotnet.com">Forgot your password?</a>
+                    <a href="/password/reset">Forgot your password?</a>
                     </div>
             </div>
             <div class="panel panel-default">

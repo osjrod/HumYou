@@ -21,7 +21,7 @@
                         <input type="file" name="avatar_path" id="avatar_path" class="span3 form-control" value={{{$profile->avatar_path}}}>
                         <br>
                         <input type="button" id="upload" value="Set Photo" class="btn btn-primary pull-right" style="margin-left:10px;">
-                        <input type="button" id="delete" value="Delete" class="btn btn-primary pull-right" style="margin-left:10px;">
+                        <input type="button" id="deletePhoto" value="Delete" class="btn btn-primary pull-right" style="margin-left:10px;">
                    </div>
                 </div>
                 <hr>

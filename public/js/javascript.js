@@ -92,6 +92,28 @@ $("#edit").click(function(){
 
   });
 
+$("#deletePhoto").click(function(){
+
+
+    $.ajax({
+          url: '/deletePhoto',
+          data: { id : $("#id").val()}
+        })
+        .done(function(response) {
+             
+
+           console.log(response);
+           window.location.href = "/editProfile";
+         
+
+        })
+        .fail(function() {
+          alert('error');
+        });
+
+
+  });
+
 
 $(".seguir").click(function(){
     

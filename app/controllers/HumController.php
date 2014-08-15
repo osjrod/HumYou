@@ -61,7 +61,7 @@ class HumController extends \BaseController {
             }
         }
 
-        $hums = Hashtag::get_hums($tag);
+        $hums = Hashtag::get_hums($tag,$id);
 
         $requests = Requestt::myRequestsReceive($id);
 

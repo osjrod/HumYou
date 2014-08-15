@@ -2,11 +2,7 @@
 
 class ProfileController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+
 	public function edit()
 	{
 		$id = Auth::id();
@@ -51,6 +47,19 @@ class ProfileController extends \BaseController {
 		$profile->phone = $phone;
 		$profile->birthday = $birthday;
 		$profile->biography = $biography;
+
+		$profile->save();
+
+		return Response::json($profile);
+	}
+
+	public function deletePhoto()
+	{
+		$id = Input::get('id');		
+
+		$profile = Profile::findOrFail($id);
+
+		$profile->avatar_path = "Pictures/profile_default.png";
 
 		$profile->save();
 

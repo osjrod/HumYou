@@ -62,6 +62,7 @@ class UserController extends BaseController
         $profile = new Profile;
         $profile->nickname = "@$nickname[0]";
         $profile->user_id = $user->id;
+        $profile->avatar_path = "Pictures/profile_default.png";
         $profile->save();
 
         Auth::attempt(array('email' => $email, 'password' => $password));

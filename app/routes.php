@@ -14,12 +14,7 @@
 Route::get('/home', 'HomeController@index');
 Route::get('login', 'HomeController@login');
 Route::get('register', 'HomeController@register');
-
-
-
 Route::get('logout', 'UserController@logout');
-
-
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 Route::get('auth', 'UserController@isLogged');
@@ -31,6 +26,7 @@ Route::group(array('before' => 'auth'), function () {
 	Route::get('/createMention', 'MentionController@create');
 	Route::get('/editProfile', 'ProfileController@edit');
 	Route::get('/updateProfile', 'ProfileController@update');
+	Route::get('/deletePhoto', 'ProfileController@deletePhoto');
 	Route::get('/search_tag', 'HumController@humsSearch');
 	Route::get('/people', 'ProfileController@listPeople');
 	Route::get('/sendRequest', 'RequestController@create');

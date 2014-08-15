@@ -251,8 +251,7 @@ $("#upload").click(function(){
       }).done(function (data) {
         //alert(data);
         if(data === 'extension'){
-          $('#alert').text('Invalid extension');
-          $('#alert').css('display', 'block');
+         alert('Invalid extension');
         }
         else{
           $('#image').attr('src',data);
@@ -260,10 +259,8 @@ $("#upload").click(function(){
         
          //alert(data); 
         
-      }).fail(function(data,data2){
-          alert("fail");
-          console.log(data);
-          console.log(data2);
+      }).fail(function(data){
+          alert("Select a valid file");
       
       });
 
